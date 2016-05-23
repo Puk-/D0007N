@@ -1,12 +1,114 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<!-- Useless comment :^) -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core">      
+    
     <h:head>
-        <title>Facelet Title</title>
+        <title>AHS - Employee</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-    </h:body>
+        <h1> Matter Management System </h1>
+        <P></P> 
+        <h:form>
+                <h:commandButton id="weefresh" value="Refresh" action="index" />
+        </h:form>
+        <f:view>
+            <h:form>                
+                <h:panelGrid id="panel" columns="3" border="0" cellpadding="2" cellspacing="2">          
+                    <f:facet name="header"> 
+                        <h:outputText value="Matter"/>
+                    </f:facet>
+                        <h:outputLabel for="idInp" value="ID:" />
+                        <h:inputText id="idInp" value="#{messageBean.selectedID}"
+                                 required="true" 
+                                 requiredMessage="ID is required!"
+                                 maxlength="10"/>   
+                        <h:message for="idInp" styleClass="error"/>
+                        <h:outputLabel for="statusInp" value="Status:"/>
+                        <h:inputText id="statusInp" value="#{messageBean.status}"
+                                 required="true" 
+                                 requiredMessage="Status is required!"
+                                 maxlength="20"/>
+                        <h:message for="statusInp" styleClass="error"/>
+                        <h:outputLabel for="employeeInp" value="Employee ID:" />
+                        <h:inputText id="employeeInp" value="#{messageBean.employeeID}"
+                                 required="true" 
+                                 requiredMessage="Employee ID is required!"
+                                 maxlength="2"/>
+                        <h:message for="employeeInp" styleClass="error"/>
+                        <h:outputLabel for="dateInp" value="Date:" />
+                        <h:inputText id="dateInp" value="#{messageBean.date}"
+                                 required="true"
+                                 requiredMessage="Date is required!"
+                                 maxlength="10"/>
+                        <h:message for="dateInp" styleClass="error"/>
+                        <h:outputLabel for="tshInp" value="Time Spent Hours:" />
+                        <h:inputText id="tshInp" value="#{messageBean.timeSpentHours}"
+                                 required="true"
+                                 requiredMessage="Time Spent Hours is required!"
+                                 maxlength="10"/>
+                        <h:message for="tshInp" styleClass="error"/>
+                        <h:outputLabel for="tsmInp" value="Time Spent Minutes:" />
+                        <h:inputText id="tsmInp" value="#{messageBean.timeSpentMinutes}"
+                                 required="true"
+                                 requiredMessage="Time Spent Minutes is required!"
+                                 maxlength="10"/>
+                        <h:message for="tsmInp" styleClass="error"/>   
+                        <h:outputLabel for="commentInp" value="Comment" />
+                        <h:inputText id="commentInp" value="#{messageBean.comment}"
+                                 required="true"
+                                 requiredMessage="Comment is required!"
+                                 maxlength="10"/>
+                        <h:message for="commentInp" styleClass="error"/>
+                </h:panelGrid>
+                    <h:commandButton id="save" value="Submit"
+                                     styleClass="button" action="#{messageBean.updateMatter()}"/>
+                </h:form>
+        </f:view> 
+        <P></P>
+        <h:dataTable value="#{messageBean.matter}" var="matterList"
+                     rowClasses="oddRows,evenRows" headerClass="header"
+                     styleClass="table" cellpadding="5" cellspacing="0">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{matterList.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Employee ID</f:facet>
+                #{matterList.employeeID}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{matterList.status}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Date</f:facet>
+                #{matterList.date}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time Spent Hours</f:facet>
+                #{matterList.timeSpentHours}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time Spent Minutes</f:facet>
+                #{matterList.timeSpentMinutes}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Content</f:facet>
+                #{matterList.content}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Comment</f:facet>
+                #{matterList.comment}
+            </h:column>       
+        
+        </h:dataTable>
+        
+        
+        
+    </h:body>    
 </html>
 
